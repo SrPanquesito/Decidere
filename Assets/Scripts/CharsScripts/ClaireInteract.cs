@@ -9,47 +9,54 @@ public class ClaireInteract : MonoBehaviour, Interactable
 
     GUIContent content;
     GUIStyle style = new GUIStyle();
-    
+    int[] curState = {0,1};
     Animator anim;
-    string lbl = "";
+
+    string[] lbl = {"","Presiona E para hablar con Claire","Estoy muy enojada porque se perdió mi hongo de peluche","¿Los has encontrado ya?","Muchas gracias..."};
+    
     public float maxRange {get{return 5f;}}
 
     public string voiceCommand = "hola";      // Comando de voz para interactuar
+    private void xchg(){
+        int temp;
+        temp = curState[0]; 
+        curState[0] = curState[1];
+        curState[1] = temp;
+    }
 
     public void OnHoverStart(){
+        
         SpeechToText commandProcessor = GameObject.FindObjectOfType<SpeechToText>();
-        commandProcessor.onVoiceCommandRecognized += OnVoiceCommandRecognized; 
-        lbl = "Presiona E para hablar con Claire";
+        commandProcessor.onVoiceCommandRecognized += OnVoiceCommandRecognized;
+        xchg();
     }
     public void OnInteract(){
-        lbl = "Has hablado con Claire";
         anim = GetComponent<Animator>();
 
         Debug.Log("Mejor hablame.");
 
         anim.SetBool("acceptedMission", true);
-        anim.SetBool("isWalking", true);
+        anim.SetBool("isTalking", true);
+        curState[0]++;
     }
     public void OnHoverEnd(){
         SpeechToText commandProcessor = GameObject.FindObjectOfType<SpeechToText>();
         commandProcessor.onVoiceCommandRecognized = null;
-       lbl = "";
+        xchg();
     }
     void OnGUI() {
         style.alignment = TextAnchor.MiddleCenter;
-        GUI.Box(new Rect(50, 200, Screen.width-100, Screen.height), lbl, style);
+        style.fontSize = 30;
+        style.normal.textColor = Color.white;
+        GUI.Box(new Rect(50, 200, Screen.width-100, Screen.height), lbl[curState[0]], style);
     }
 
     public void OnVoiceCommandRecognized(string command) {
         if (command.ToLower() == voiceCommand.ToLower())
         {
-            lbl = "Has hablado con Claire";
             anim = GetComponent<Animator>();
 
-            Debug.Log("Dijiste hola para interactuar con Claire");
-
-            anim.SetBool("acceptedMission", true);
-            anim.SetBool("isWalking", true);
+            OnInteract();
         }
     }
 }
