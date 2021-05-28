@@ -215,7 +215,7 @@ namespace IBM.Watsson.Examples
                     foreach (var alt in res.alternatives)
                     {
                         string text = string.Format("{0} ({1}, {2:0.00})\n", alt.transcript, res.final ? "Final" : "Interim", alt.confidence);
-                        // Log.Debug("ExampleStreaming.OnRecognize()", text);
+                        Log.Debug("ExampleStreaming.OnRecognize()", text);
                         // ResultsField.text = text;
 
                         if (res.final) {

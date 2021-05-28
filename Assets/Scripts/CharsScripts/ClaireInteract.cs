@@ -12,7 +12,7 @@ public class ClaireInteract : MonoBehaviour, Interactable
     int[] curState = {0,1};
     Animator anim;
 
-    string[] lbl = {"","Presiona E para hablar con Claire","Estoy muy enojada porque se perdió mi hongo de peluche","¿Los has encontrado ya?","Muchas gracias..."};
+    public string[] lbl = {"","Presiona E para hablar con Claire","Estoy muy enojada porque se perdió mi hongo de peluche","¿Los has encontrado ya?","Muchas gracias..."};
     
     public float maxRange {get{return 5f;}}
 
@@ -35,9 +35,8 @@ public class ClaireInteract : MonoBehaviour, Interactable
 
         Debug.Log("Mejor hablame.");
 
-        anim.SetBool("acceptedMission", true);
         anim.SetBool("isTalking", true);
-        curState[0]++;
+        curState[0] = (curState[0] + 1) % 5;
     }
     public void OnHoverEnd(){
         SpeechToText commandProcessor = GameObject.FindObjectOfType<SpeechToText>();
