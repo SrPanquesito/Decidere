@@ -19,6 +19,7 @@ public class Item : ScriptableObject
     [TextArea(15,20)]
     public string description;
     public Sprite icon = null;
+    public string meshReserved;
     public virtual void Use(){
 
     }

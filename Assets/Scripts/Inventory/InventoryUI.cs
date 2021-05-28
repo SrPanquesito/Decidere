@@ -81,6 +81,14 @@ public class InventoryUI : MonoBehaviour
         Slot[] slots = GetComponentsInChildren<Slot>();
         Item[] toolItems = _inventory.GetAllItemsByType(ItemType.Tool);
 
+        Transform[] ts = GetComponentsInChildren<Transform>();
+
+        foreach (Transform child in ts)
+        {
+            //child is your child transform
+            Debug.Log(child);
+        }
+
         if (toolItems.Length > 0 && slots.Length != 0)
             slots[0].SetItem(toolItems[0], toolItems.Length);
     }

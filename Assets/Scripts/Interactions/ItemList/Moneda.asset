@@ -17,4 +17,5 @@ MonoBehaviour:
   ItemName: Moneda
   description: Item de prueba
   icon: {fileID: 21300000, guid: b791134c43900b54992a0cfcc8107dca, type: 3}
+  meshReserved: mushroom
   durability: 5
