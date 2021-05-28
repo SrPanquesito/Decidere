@@ -14,6 +14,7 @@ public class InventoryUI : MonoBehaviour
     public string resumeButton = "ResumeButton";
 
     public string voiceCommand = "inventario";
+    public Animator animInventoryController;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +30,14 @@ public class InventoryUI : MonoBehaviour
         if (CrossPlatformInputManager.GetButtonDown(inventoryButton))
         {
             panel.SetActive(!panel.activeSelf);
-            if (panel.activeSelf)
+            if (panel.activeSelf) // Open inventory
             {
                 UpdateUI();
+                animInventoryController.SetBool("Open", true);
+            }
+            else // Close inventory 
+            {
+                animInventoryController.SetBool("Open", false);
             }
         }
 
