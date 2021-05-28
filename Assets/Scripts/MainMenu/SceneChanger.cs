@@ -7,6 +7,6 @@ public class SceneChanger : MonoBehaviour
 {
     // Start is called before the first frame update
     public void Scene1(){
-        SceneManager.LoadScene("Escena de Prueba - Panque");
+        SceneManager.LoadScene("Mundo1");
     }
 }
