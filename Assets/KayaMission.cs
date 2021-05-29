@@ -39,11 +39,7 @@ public class KayaMission : MonoBehaviour, Interactable
         anim = GetComponent<Animator>();
         anim.SetBool("isTalking", true);
         if (curState[0].Equals(3)) {
-            //if (inventario.Has2Shrooms){
-                //Eliminar items
-                //
-                //curState[0] = 4;
-            //}       
+            curState[0] = 4;      
         }else{
             if (curState[0]<4) curState[0]++;
         }
