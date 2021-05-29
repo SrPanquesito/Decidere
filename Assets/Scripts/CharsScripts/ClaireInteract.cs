@@ -36,7 +36,15 @@ public class ClaireInteract : MonoBehaviour, Interactable
         Debug.Log("Mejor hablame.");
 
         anim.SetBool("isTalking", true);
-        curState[0] = (curState[0] + 1) % 5;
+        if (curState[0].Equals(3)) {
+            //if (inventario.Has3Books){
+                //Eliminar items
+                //
+                //curState[0] = 4;
+            //}       
+        }else{
+            if (curState[0]<4) curState[0]++;
+        }
     }
     public void OnHoverEnd(){
         SpeechToText commandProcessor = GameObject.FindObjectOfType<SpeechToText>();

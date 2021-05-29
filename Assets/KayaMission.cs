@@ -38,7 +38,16 @@ public class KayaMission : MonoBehaviour, Interactable
     public void OnInteract(){
         anim = GetComponent<Animator>();
         anim.SetBool("isTalking", true);
-        curState[0] = (curState[0] + 1) % 5;
+        if (curState[0].Equals(3)) {
+            //if (inventario.Has2Shrooms){
+                //Eliminar items
+                //
+                //curState[0] = 4;
+            //}       
+        }else{
+            if (curState[0]<4) curState[0]++;
+        }
+        
     }
     public void OnHoverEnd(){
         SpeechToText commandProcessor = GameObject.FindObjectOfType<SpeechToText>();
